@@ -129,6 +129,7 @@ int main() //função principal - ponto de entrada no sistema
 		printf("\t1 - Registrar nomes\n");
 		printf("\t2 - Consultar nomes\n");
 		printf("\t3 - Deletar nomes\n"); 
+		printf("\t4 - Sair do sistema\n");
 		printf("\nOpção desejada: "); //final MENU
 	
 		scanf("%d", &opcao); //armazenamento da escolha do usuário - %d variável inteira
@@ -147,6 +148,12 @@ int main() //função principal - ponto de entrada no sistema
 			
 			case 3:
 			deletar();
+			break;
+			
+			case 4:
+			printf("\nObrigada por usar nosso sistema!\n");
+			printf("\nVolte logo!\n\n");
+			return 0;
 			break;
 			
 			default:
