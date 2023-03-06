@@ -15,6 +15,7 @@ int registrar() //função responsável por cadastrar os usuários no sistema
 
 	printf("Digitar o nº do CPF a ser cadastrado: "); //coletando a informação "CPF" do usuário
 	scanf("%s", cpf); //%s refere-se a salvar a string - salvar como cpf
+	printf("\n");
 	
 	strcpy(arquivo, cpf); //responsável por copiar os valores das string
 	
@@ -29,6 +30,7 @@ int registrar() //função responsável por cadastrar os usuários no sistema
 	
 	printf("Digitar o nome a ser cadastrado: "); //coletando a informação "Nome" do usuário
 	scanf("%s",nome); //%s refere-se a salvar a string - salvar com arquivo Nome
+	printf("\n");
 	
 	file = fopen(arquivo, "a"); //atualizar arquivo
 	fprintf(file,nome); //criar o arquivo Nome
@@ -40,6 +42,7 @@ int registrar() //função responsável por cadastrar os usuários no sistema
 	
 	printf("Digitar o sobrenome a ser cadastrado: "); //coletando a informação "Sobrenome" do usuário
 	scanf("%s",sobrenome); //salvar string com arquivo Sobrenome
+	printf("\n");
 	
 	file = fopen(arquivo, "a"); //atualizar arquivo
 	fprintf(file,sobrenome); //criar arquivo Sobrenome
@@ -51,11 +54,12 @@ int registrar() //função responsável por cadastrar os usuários no sistema
 
 	printf("Digitar o cargo a ser cadastrado: "); //coletando a informação "Cargo" do usuário
 	scanf("%s",cargo); //salvar string com arquivo Cargo
+	printf("\n");
 	
 	file = fopen(arquivo, "a"); //atualizar arquivo
 	fprintf(file,cargo); //criar arquivo Cargo
 	fclose(file); //fechar o arquivo
-	
+	printf("\n");
 	system("pause");
 }
 
@@ -67,7 +71,7 @@ int consultar()
 	char cpf[40];
 	char conteudo[200]; //string conteúdo do aqruivo
 	
-	printf("Digitar o nº de CPF a ser consultado: ");
+	printf("Digitar o nº de CPF a ser consultado: "); //recebendo qual usuário será consultado
 	scanf("%s",cpf);
 	
 	FILE *file;
@@ -85,6 +89,7 @@ int consultar()
 		printf("\n\n");
 	} 
 	
+	fclose(file);
 	system("pause");
 }
 	
@@ -96,17 +101,29 @@ int deletar()
 	printf("Digitar o n° de CPF a ser deletado: ");
 	scanf("%s",cpf);
 		
-	remove(cpf);
-		
 	FILE *file;
 	file = fopen(cpf,"r");
-		
+	
 	if(file == NULL)
 	{
-		printf("\nO usuário não está cadastrado no sistema!\n\n");
+		printf("\n\nO usuário não se encontra no sistema!\n\n");
 		system("pause");
-	}                                                                                                                                                                                                                                                                                      
+	}
+	else
+	{
+		fclose(file);
+		remove(cpf);
+		FILE *file;	
+		file = fopen(cpf,"r");
+				
+		if(file == NULL)
+		{
+		printf("\n\nUsuário deletado com sucesso!\n\n");
+		system("pause");
+		}
+	}
 	
+	fclose(file);
 }
 	
 
@@ -179,5 +196,5 @@ int main() //função principal - ponto de entrada no sistema
 	
 	else
 		printf("\nSenha incorreta!\n\n");
-		
+			
 }
